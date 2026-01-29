@@ -260,7 +260,7 @@ function InvoiceCase2() {
                               </td>
                               <td>
                                 {formatDate(
-                                  item?.["Shutterhood Assembly"] || ""
+                                  item?.["Shutterhood Assembly"] || "",
                                 )}
                               </td>
                               <td>{item?.["Shutterhood Assembly By"] || ""}</td>
@@ -296,7 +296,7 @@ function InvoiceCase2() {
                                     item["Motor Img"] && (
                                       <img
                                         src={`${item["Motor Img"]}`}
-                                        alt=""
+                                        alt="Motor Img"
                                         style={{
                                           minWidth: "150px",
                                           height: "85px",
@@ -326,7 +326,7 @@ function InvoiceCase2() {
                                   item["Slat And Bottom Bar Img"] && (
                                     <img
                                       src={`${item["Slat And Bottom Bar Img"]}`}
-                                      alt=""
+                                      alt="Slat And Bottom Bar Img"
                                       style={{
                                         minWidth: "150px",
                                         height: "85px",
@@ -352,7 +352,7 @@ function InvoiceCase2() {
                                   item["Side Guide Img"] && (
                                     <img
                                       src={`${item["Side Guide Img"]}`}
-                                      alt=""
+                                      alt="Side Guide Img"
                                       style={{
                                         minWidth: "150px",
                                         height: "85px",
@@ -378,7 +378,7 @@ function InvoiceCase2() {
                                   item["Cover Img"] && (
                                     <img
                                       src={`${item["Cover Img"]}`}
-                                      alt=""
+                                      alt="Cover Img"
                                       style={{
                                         minWidth: "150px",
                                         height: "85px",
@@ -405,7 +405,7 @@ function InvoiceCase2() {
                                     item["Cabling Img"] && (
                                       <img
                                         src={`${item["Cabling Img"]}`}
-                                        alt=""
+                                        alt="Cabling Img"
                                         style={{
                                           minWidth: "150px",
                                           height: "85px",
@@ -420,7 +420,7 @@ function InvoiceCase2() {
                                 </td>
                               </tr>
                             )}
-                          á{/* OPERATION TEST */}
+                          {/* OPERATION TEST */}
                           {item["Operation By"] && (
                             <tr>
                               <td className="min-w-[100px]">Operation</td>
@@ -431,7 +431,7 @@ function InvoiceCase2() {
                                   item["Operation Img"] && (
                                     <img
                                       src={`${item["Operation Img"]}`}
-                                      alt=""
+                                      alt="Operation Img"
                                       style={{
                                         minWidth: "150px",
                                         height: "85px",
@@ -450,9 +450,10 @@ function InvoiceCase2() {
                       </tbody>
                     </table>
                   </table>
+                  <div className="flex justify-end mt-5 mr-10">{index + 1}</div>
                 </div>
               );
-            }
+            },
           )}
         </div>
       </div>
