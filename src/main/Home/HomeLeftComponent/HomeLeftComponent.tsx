@@ -24,7 +24,7 @@ const HomeLeftComponent = () => {
   let cancelTokenSource: CancelTokenSource | null = null;
 
   const { selectedAnalysis, setDataAnalysis } = useContext(
-    AuthContext
+    AuthContext,
   ) as AuthContextType;
   const auth = localStorage.getItem("access_token_installation");
 
@@ -45,7 +45,7 @@ const HomeLeftComponent = () => {
   const [selectedUserName, setSelectedUselectedUserName] = useState<string>("");
   const [listSerialNumber, setListSerialNumber] = useState<string[]>([]);
   const [selectedSerialNumber, setSelectedSerialNumber] = useState<number[]>(
-    []
+    [],
   );
   const [isShowImage, setIsShowImage] = useState<boolean>(false);
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
@@ -203,7 +203,7 @@ const HomeLeftComponent = () => {
       const years = dataTotalProduct?.founds
         .map((item: any) => item["year"])
         .filter(
-          (item: any, i: any, ar: string | any[]) => ar.indexOf(item) === i
+          (item: any, i: any, ar: string | any[]) => ar.indexOf(item) === i,
         )
         .sort();
 
@@ -234,7 +234,7 @@ const HomeLeftComponent = () => {
       const projects = dataTotalProduct?.founds
         .filter((item: any) => item["year"] === selectedYear)
         .map((item: string | any) =>
-          item["projects"].map((a: any) => a["project_code"])
+          item["projects"].map((a: any) => a["project_code"]),
         )
         .flat();
 
@@ -245,7 +245,7 @@ const HomeLeftComponent = () => {
       setListProjectCode(projects);
     } else {
       const newData = dataInstallationListOfProjectCode?.project?.map(
-        (item: any) => item["project_code"]
+        (item: any) => item["project_code"],
       );
 
       setListProjectCode(newData);
@@ -260,7 +260,7 @@ const HomeLeftComponent = () => {
       const filteredData = dataTotalProduct?.founds
         .filter((found: any) => found.year === selectedYear)[0]
         ?.projects.filter(
-          (project: any) => project.project_code === selectedProjectCode
+          (project: any) => project.project_code === selectedProjectCode,
         )
         .map((project: any) => project.serial_number)[0]; // map to serial_number
       setListSerialNumber(filteredData);
@@ -283,7 +283,7 @@ const HomeLeftComponent = () => {
       setSelectedSerialNumber([...selectedSerialNumber, Number(value)]);
     } else {
       setSelectedSerialNumber(
-        selectedSerialNumber.filter((item) => Number(item) !== Number(value))
+        selectedSerialNumber.filter((item) => Number(item) !== Number(value)),
       );
     }
   };
@@ -295,14 +295,14 @@ const HomeLeftComponent = () => {
         "-" +
         ((date?.getMonth() as number) + 1) +
         "-" +
-        date?.getDate()
+        date?.getDate(),
     );
     setFilterDateStartForInvoice(
       date?.getDate() +
         "-" +
         ((date?.getMonth() as number) + 1) +
         "-" +
-        date?.getFullYear()
+        date?.getFullYear(),
     );
   };
 
@@ -313,14 +313,14 @@ const HomeLeftComponent = () => {
         "-" +
         ((date?.getMonth() as number) + 1) +
         "-" +
-        date?.getDate()
+        date?.getDate(),
     );
     setFilterDateEndForInvoice(
       date?.getDate() +
         "-" +
         ((date?.getMonth() as number) + 1) +
         "-" +
-        date?.getFullYear()
+        date?.getFullYear(),
     );
   };
 
@@ -344,7 +344,7 @@ const HomeLeftComponent = () => {
     });
 
   const handleUpdateInstallation = async (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement>,
   ) => {
     e.preventDefault();
     // Validate fields and return early if validation fails
@@ -368,7 +368,7 @@ const HomeLeftComponent = () => {
         selectedProjectCode,
         filteredStartDate,
         filteredEndDate,
-        isShowImage
+        isShowImage,
       );
     } else if (selectedAnalysis === "gen-analysis-project-detail-report") {
       apiCall = api.postInstallationGenanalasysProjectDetail({
@@ -415,9 +415,16 @@ const HomeLeftComponent = () => {
           selectedProjectCode,
           filteredStartDate,
           filteredEndDate,
-          isShowImage
+          isShowImage,
         )
       ) {
+        if (res.data.details.length === 0) {
+          toast.error("This project code has no data !", {
+            position: "top-left",
+            className: "min-w-[400px]",
+          });
+          return;
+        }
         setDataDetailGenerateInvoice(res.data);
       } else {
         // Handle other cases as needed
@@ -600,7 +607,7 @@ const HomeLeftComponent = () => {
                 (item: string) => ({
                   value: item,
                   label: item,
-                })
+                }),
               )}
               value={
                 selectedUserName
